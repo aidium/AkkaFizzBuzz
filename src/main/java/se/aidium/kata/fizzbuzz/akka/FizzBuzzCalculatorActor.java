@@ -53,11 +53,9 @@ public class FizzBuzzCalculatorActor extends UntypedActor {
 
 	private void onCalculationResult(CalculationResult result) {
 		resultArray[result.number()] = result.result();
-		log.debug("Total calcualtion time {} sec", (System.currentTimeMillis() - startTime) / 1000.f);
 		if (recivedResults++ == calculationPackage.toNumber()) {
 			log.info("Total calcualtion time {} sec", (System.currentTimeMillis() - startTime) / 1000.f);
 			initiator.tell(Arrays.asList(resultArray), getSelf());
-			log.info("Total calcualtion time {} sec", (System.currentTimeMillis() - startTime) / 1000.f);
 		}
 	}
 }

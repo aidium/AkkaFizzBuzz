@@ -27,10 +27,10 @@ public class FizzBuzzCalculatorActorTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void shouldCreateScatterGatherSetup() throws Exception {
+	public void shouldCreateWorkers() throws Exception {
 		final Props props = Props.create(FizzBuzzCalculatorActor.class);
 		final TestActorRef<FizzBuzzCalculatorActor> ref = TestActorRef.create(system, props, "test");
-		final Future<Object> future = akka.pattern.Patterns.ask(ref, new CalculationPackage(8, 1000000), 3000);
+		final Future<Object> future = akka.pattern.Patterns.ask(ref, new CalculationPackage(50), 3000);
 		List<String> result = (List<String>) Await.result(future, Duration.create(3, TimeUnit.SECONDS));
 		assertTrue(future.isCompleted());
 		assertEquals(result.get(0), "FizzBuzz");
