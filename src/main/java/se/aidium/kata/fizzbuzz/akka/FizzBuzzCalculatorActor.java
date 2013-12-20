@@ -1,16 +1,11 @@
 package se.aidium.kata.fizzbuzz.akka;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.routing.FromConfig;
 
 public class FizzBuzzCalculatorActor extends UntypedActor {
-
-	private final static Logger log = LoggerFactory.getLogger(FizzBuzzCalculatorActor.class);
 
 	private CalculationPackage calculationPackage;
 	private String[] resultArray;
@@ -55,7 +50,6 @@ public class FizzBuzzCalculatorActor extends UntypedActor {
 	private void onCalculationResult(CalculationResult result) {
 		resultArray[result.number()] = result.result();
 		if (recivedResults++ == calculationPackage.toNumber()) {
-			log.info("Total calcualtion time {} sec", (System.currentTimeMillis() - startTime) / 1000.f);
 			System.out.println(String.format("Total calcualtion time %.03f sec", (System.currentTimeMillis() - startTime) / 1000.f));
 			getContext().system().shutdown();
 		}
