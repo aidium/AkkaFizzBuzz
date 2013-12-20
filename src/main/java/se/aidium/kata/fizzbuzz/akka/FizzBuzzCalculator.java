@@ -9,6 +9,5 @@ public class FizzBuzzCalculator {
 		ActorSystem system = ActorSystem.create("FizzBuzzCalulator");
 		ActorRef actorRef = system.actorOf(Props.create(FizzBuzzCalculatorActor.class), "FizzBuzzCalculatorActor");
 		actorRef.tell(new CalculationPackage(5000000), ActorRef.noSender());
-		system.shutdown();
 	}
 }
